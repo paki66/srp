@@ -10,28 +10,27 @@ from etl.transform.facts.plays_fact import transform_plays_fact
 def run_transformations(raw_data):
     # Transform dimensions
     game_dim = transform_game_dim(
-        raw_data["product"],
-        raw_data["product_type"],
-        raw_data["product_line"],
+        raw_data["game"],
+        raw_data["season"],
         csv_playss_df=raw_data.get("csv_plays")
     )
     print("1️⃣ Game dimension complete")
 
     offense_dim = transform_offense_dim(
-        raw_data["country"],
-        csv_country_df=raw_data.get("csv_sales")
+        raw_data["offense"],
+        csv_country_df=raw_data.get("csv_plays")
     )
     print("2️⃣ Offense dimension complete")
 
     defense_dim = transform_defense_dim(
-        raw_data["retailer_type"],
-        csv_retailer_df=raw_data.get("csv_sales")
+        raw_data["defense"],
+        csv_retailer_df=raw_data.get("csv_plays")
     )
     print("3️⃣ Defense dimension complete")
 
     time_dim = transform_time_dim(
         raw_data["plays"],
-        csv_date_df=raw_data.get("csv_sales")
+        csv_date_df=raw_data.get("csv_plays")
     )
     print("4️⃣ Time dimension complete")
 
