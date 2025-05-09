@@ -16,7 +16,7 @@ def transform_offense_dim(psql_offense_df, csv_offense_df=None):
     if csv_offense_df:
         csv_df = (
             csv_offense_df
-            .selectExpr("posteam as offense_team_name", "PosTeamScore as offense_score")
+            .selectExpr("offense_team as offense_team_name", "offense_team_score as offense_score")
             .withColumn("offense_team_name", initcap(trim(col("offense_team_name"))))
             .withColumn("offense_team_score", col("offense_score"))
             .dropDuplicates(["offense_team_name", "offense_score"])

@@ -24,7 +24,6 @@ def transform_game_dim(game_df, season_df, csv_plays_df=None):
     if csv_plays_df:
         csv_game_df = (
             csv_plays_df
-            .selectExpr("GameID as game_id", "HomeTeam as home_team", "AwayTeam as away_team", "Season as year")
             .withColumn("game_id", initcap(trim(col("game_id"))))
             .withColumn("year", initcap(trim(col("year"))))
             .withColumn("home_team", initcap(trim(col("home_team"))))

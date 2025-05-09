@@ -16,7 +16,7 @@ def transform_defense_dim(psql_defense_df, csv_defense_df=None):
     if csv_defense_df:
         csv_df = (
             csv_defense_df
-            .selectExpr("DefensiveTeam as defense_team_name", "DefTeamScore as defense_score")
+            .selectExpr("defense_team as defense_team_name", "defense_team_score as defense_score")
             .withColumn("defense_team_name", initcap(trim(col("defense_team_name"))))
             .withColumn("defense_team_score", col("defense_score"))
             .dropDuplicates(["defense_team_name", "defense_score"])

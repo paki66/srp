@@ -12,33 +12,39 @@ def run_transformations(raw_data):
     game_dim = transform_game_dim(
         raw_data["game"],
         raw_data["season"],
-        csv_playss_df=raw_data.get("csv_plays")
+        csv_plays_df=raw_data.get("csv_plays")
     )
     print("1️⃣ Game dimension complete")
 
     offense_dim = transform_offense_dim(
         raw_data["offense"],
-        csv_country_df=raw_data.get("csv_plays")
+        csv_offense_df=raw_data.get("csv_plays")
     )
     print("2️⃣ Offense dimension complete")
 
     defense_dim = transform_defense_dim(
         raw_data["defense"],
-        csv_retailer_df=raw_data.get("csv_plays")
+        csv_defense_df=raw_data.get("csv_plays")
     )
     print("3️⃣ Defense dimension complete")
 
-    time_dim = transform_time_dim(
+    time_dim = transform_time_dim( # TODO hardkodirati ću
         raw_data["plays"],
         csv_date_df=raw_data.get("csv_plays")
     )
     print("4️⃣ Time dimension complete")
 
-    position_dim = transform_position_dim()
+    position_dim = transform_position_dim(
+        raw_data["plays"],
+        csv_plays_df=raw_data.get("csv_plays")
+    )
     print("4️⃣ Position dimension complete")
 
 
-    goal_dim = transform_goal_dim()
+    goal_dim = transform_goal_dim(
+        raw_data["plays"],
+        csv_plays_df=raw_data.get("csv_plays")
+    )
     print("4️⃣ Goal dimension complete")
 
     fact_plays = transform_plays_fact(
