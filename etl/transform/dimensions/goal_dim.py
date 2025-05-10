@@ -1,4 +1,4 @@
-from pyspark.sql.functions import col, trim
+from pyspark.sql.functions import col
 from pyspark.sql.window import Window
 from pyspark.sql.functions import row_number
 

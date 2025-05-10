@@ -17,7 +17,7 @@ class DimGame(Base):
     game_tk = Column(BigInteger, primary_key=True)
     home_team = Column(String)
     away_team = Column(String)
-    date = Column(DateTime)
+    game_id = Column(String)
     year = Column(Integer)
 
 
@@ -71,13 +71,14 @@ class FactPlays(Base):
     __table_args__ = {'schema': 'public'}
 
     fact_plays_tk = Column(BigInteger, primary_key=True)
-    game_id = Column(Integer, ForeignKey('public.dim_game.game_tk'))
-    defense_id = Column(Integer, ForeignKey('public.dim_offense.offense_tk'))
-    offense_id = Column(Integer, ForeignKey('public.dim_offense.offense_tk'))
-    position_id = Column(Integer, ForeignKey('public.dim_position.position_tk'))
-    goal_id = Column(Integer, ForeignKey('public.dim_goal.goal_tk'))
-    time_id = Column(Integer, ForeignKey('public.dim_time.time_tk'))
+    game_tk = Column(Integer, ForeignKey('public.dim_game.game_tk'))
+    defense_tk = Column(Integer, ForeignKey('public.dim_defense.defense_tk'))
+    offense_tk = Column(Integer, ForeignKey('public.dim_offense.offense_tk'))
+    position_tk = Column(Integer, ForeignKey('public.dim_position.position_tk'))
+    goal_tk = Column(Integer, ForeignKey('public.dim_goal.goal_tk'))
+    time_tk = Column(Integer, ForeignKey('public.dim_time.time_tk'))
     yards_gained = Column(Integer)
+    play_type = Column(String)
 
 
 

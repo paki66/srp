@@ -6,7 +6,7 @@ def transform_position_dim(psql_plays_df, csv_plays_df=None):
     psql_df = (
         psql_plays_df
         .select(
-            trim(col("side_of_field")),
+            col("side_of_field"),
             col("yard_line").cast("int")
         )
         .dropna()

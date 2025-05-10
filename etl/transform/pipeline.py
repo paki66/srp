@@ -28,10 +28,7 @@ def run_transformations(raw_data):
     )
     print("3️⃣ Defense dimension complete")
 
-    time_dim = transform_time_dim( # TODO hardkodirati ću
-        raw_data["plays"],
-        csv_date_df=raw_data.get("csv_plays")
-    )
+    time_dim = transform_time_dim()
     print("4️⃣ Time dimension complete")
 
     position_dim = transform_position_dim(

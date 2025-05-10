@@ -12,8 +12,8 @@ def transform_time_dim():
     window = Window.orderBy("quarter", "time_under")
     complete_df = (
         nums1.crossJoin(nums2)
-        .withColumn("time_tk"), row_number().over(window)
-        .orderBy("quarter", "time_tk")
+        .withColumn("time_tk", row_number().over(window))
+        .orderBy("quarter", "time_under")
     )
 
     return complete_df
